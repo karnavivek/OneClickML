@@ -30,11 +30,6 @@ class ModelTraining:
         self.X = X
         self.y = y
 
-    def model_selection(result): #append all the MSE results from each model & make a list -> Select the least MSE's model & move it forward for model embeddings
-        results = []
-        results.append(result)
-        return min(results)
-
     def results(self, y_test, y_pred, binary=False):
         if binary == False:
             mse = mean_squared_error(y_test, y_pred)
@@ -187,7 +182,7 @@ class ModelTraining:
             print("\n-------------------------------------------------------")
             return {
                 'Model': 'Logistic Regression',
-                'Metric': "MSE",
+                'Metric': "ROC",
                 "ROC Score": result,
                 "Grid Search CV Score": performance['best_score'][0],
                 'Best Params': performance['best_params'][0]
@@ -379,29 +374,20 @@ class ModelTraining:
                     'Best Params': performance['best_params'][0]
                 }
 
-    def performances(self, performance):
-        perf = []
-        perf.append(performance)
-        perf = pd.DataFrame(perf)
-        return perf
-
 
 #(------------------------------Implementation---------------------------------)
 
-data = pd.read_csv("/Users/karnavivek/SCLTool/Data/WFP_dataset.csv")
+data = pd.read_csv("/Users/karnavivek/OneClickML-1/datasets/WFP_dataset.csv")
 X = data.drop('label', axis=1)
 y = data.label
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 seed = 17
 
-#For running ONE model in a single iteration:
-# model_list = 'linear' 
-
-#for running ALL models in a single iteration:
+# for running ALL models in a single iteration:
 model_list = ['linear','DT','MLP','GBM','RF','SVM']
-# model_list = ['linear','DT','MLP']
-# model_list = ['linear'] #for running single model in a single iteration
+# for running single model in a single iteration
+# model_list = ['linear'] 
 
 all_results = []
 
@@ -413,8 +399,10 @@ for alg in model_list:
 results_df = pd.DataFrame(all_results)
 print("\nModel Performance Summary:\n")
 print(results_df)
-print(f'\nOneClickML Recommeds "{results_df.loc[results_df['MSE Score'].idxmin(), 'Model']}" Model with Minimum score: {min(results_df['MSE Score'])}')
-
+if results_df['Model'][0]=='Linear Regression':
+    print(f'\nOneClickML Recommeds "{results_df.loc[results_df['MSE Score'].idxmin(), 'Model']}" Model with Minimum score: {min(results_df['MSE Score'])}')
+else:
+    print(f'\nOneClickML Recommeds "{results_df.loc[results_df['ROC Score'].idxmin(), 'Model']}" Model with Minimum score: {min(results_df['ROC Score'])}')
 '''
 we need Max(Grid Search CV Score) & Min(MSE Score) to select the model for model_embeddings.
 By performing model_training.py to Palatable WFP Problem, we found out that best model recommended by OneClickML is GBM Regressor,
