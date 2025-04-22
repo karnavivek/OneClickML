@@ -406,9 +406,6 @@ else:
 '''
 we need Max(Grid Search CV Score) & Min(MSE Score) to select the model for model_embeddings.
 By performing model_training.py to Palatable WFP Problem, we found out that best model recommended by OneClickML is GBM Regressor,
-Which is the similar to opticl's answer! :)
-
-Next step is to Look at the Best Params selected by GridSearchCV and convert these params into something which is readable by model_embeddings
 '''
 
 end = time.time()
