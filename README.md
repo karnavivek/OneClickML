@@ -20,7 +20,7 @@ A Python Library which can train your specific dataset using Multiple Machine Le
 
 Working of "OneClickML" Library:
 
-https://github.com/user-attachments/assets/d605be23-ec76-4a2f-8968-74eaee1935e7
+![Untitled design](https://github.com/user-attachments/assets/16b7d46d-795a-4550-8aee-c0190627e60f)
 
 
 
