@@ -62,13 +62,13 @@ class ModelTraining:
         # print(f'Your {model} has been Trained Successfully!')
         return scores
 
-    def pickle_models(self, model, model_name: str):
-        directory = '/Users/karnavivek/SCLTool/pickledmodels/'
-        filename = f'{model_name}_model.pkl'
-        filepath = os.path.join(directory, filename)
-        os.makedirs(directory, exist_ok=True)
-        with open(filepath, 'wb') as file:
-            pickle.dump(model, file)
+    # def pickle_models(self, model, model_name: str):
+    #     directory = '/Users/karnavivek/SCLTool/pickledmodels/'
+    #     filename = f'{model_name}_model.pkl'
+    #     filepath = os.path.join(directory, filename)
+    #     os.makedirs(directory, exist_ok=True)
+    #     with open(filepath, 'wb') as file:
+    #         pickle.dump(model, file)
 
     def linear(self, X_train, y_train, X_test=None, y_test=None, binary=False):
 
@@ -79,14 +79,14 @@ class ModelTraining:
             model = LinearRegression()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'linear')
+            # self.pickle_models(model, 'linear')
             print("\nYour Linear Regression model has been trained!")
             return model, y_pred
         else:
             model = LogisticRegression()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'logistic')
+            # self.pickle_models(model, 'logistic')
             print("\nYour Logistic Regression model has been trained!")
             return model, y_pred
     
@@ -100,14 +100,14 @@ class ModelTraining:
             model = DecisionTreeRegressor() #make sure to add params settings
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'DT')
+            # self.pickle_models(model, 'DT')
             print("\nYour Decision Tree Regressor model has been trained!")
             return model, y_pred
         else:
             model = DecisionTreeClassifier()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'DT')
+            # self.pickle_models(model, 'DT')
             print("\nYour Decision Tree Classifier model has been trained!")
             return model, y_pred
 
@@ -120,14 +120,14 @@ class ModelTraining:
             model = MLPRegressor() #make sure to add params settings
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'MLP')
+            # self.pickle_models(model, 'MLP')
             print("\nYour MLP Regressor model has been trained!")
             return model, y_pred
         else:
             model = MLPClassifier()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'MLP')
+            # self.pickle_models(model, 'MLP')
             print("\nYour MLP Classifier model has been trained!")
             return model, y_pred
         
@@ -140,14 +140,14 @@ class ModelTraining:
             model = GradientBoostingRegressor() #make sure to add params settings
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'GBM')
+            # self.pickle_models(model, 'GBM')
             print("\nYour GBM Regressor model has been trained!")
             return model, y_pred
         else:
             model = GradientBoostingClassifier()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'GBM')
+            # self.pickle_models(model, 'GBM')
             print("\nYour GBM Classifier model has been trained!")
             return model, y_pred
         
@@ -160,14 +160,14 @@ class ModelTraining:
             model = RandomForestRegressor() #make sure to add params settings
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'RF')
+            # self.pickle_models(model, 'RF')
             print("\nYour RF Regressor model has been trained!")
             return model, y_pred
         else:
             model = RandomForestClassifier()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'RF')
+            # self.pickle_models(model, 'RF')
             print("\nYour RF Classifier model has been trained!")
             return model, y_pred
 
@@ -180,14 +180,14 @@ class ModelTraining:
             model = LinearSVR(max_iter=int(1e5), dual=False, loss='squared_epsilon_insensitive') #make sure to add params settings
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'SVM')
+            # self.pickle_models(model, 'SVM')
             print("\nYour SVM Regressor model has been trained!")
             return model, y_pred
         else:
             model = LinearSVC(max_iter=1e5, dual=False, penalty='l2')
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            self.pickle_models(model, 'SVM')
+            # self.pickle_models(model, 'SVM')
             print("\nYour SVM Classifier model has been trained!")
             return model, y_pred
 
