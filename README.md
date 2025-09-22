@@ -18,7 +18,11 @@ A Python Library which can train your specific dataset using Multiple Machine Le
 5) RF Classifier
 6) SVM Classifier
 
-### How to use OneClickML for my custome data?
+To use OneClickML Prototype, Visit: https://oneclickmlapp.streamlit.app
+
+![alt text](image-1.png)
+
+### How to use OneClickML for custome data?
 
 Step 1 -> Separate the data & make them ready for training (this can involve, Data Manipulation, Feature Engineering etc. :
 ```
@@ -28,7 +32,10 @@ y = data.label
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 seed = 17
+
 ```
+### The Above Step is done automatically by OneClickML in __2. Set Splitting Parameters__
+
 Step 2 -> Make a list of the model you want to run, form a for loop & call "ModelTraining" Class then ".run_models()" Methods to get Results :) (Example is below)
 ```
 #for running ALL models in a single iteration:
@@ -54,6 +61,9 @@ else:
     print(f'\nOneClickML Recommeds "{results_df.loc[results_df['ROC Score'].idxmin(), 'Model']}" Model with Minimum score: {min(results_df['ROC Score'])}')
 
 ```
+### These steps will be running in background when you click __Run OneClickML__
+
+
 Working of "OneClickML" Library:
 
 ![Untitled design](https://github.com/user-attachments/assets/16b7d46d-795a-4550-8aee-c0190627e60f)
