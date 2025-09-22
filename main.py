@@ -27,9 +27,10 @@ import time
 start = time.time()
 
 class ModelTraining:
-    def __init__(self, X, y):
-        self.X = X
-        self.y = y
+    def __init__(self):
+        return
+        # self.X = X
+        # self.y = y
 
     def results(self, y_test, y_pred, binary=False):
         if binary == False:
@@ -227,9 +228,9 @@ class ModelTraining:
             _model, y_pred = self.linear(X_train, y_train, X_test, y_test, False)
             result = self.results(y_test, y_pred, False)
             y_mean = y_test.mean()
-            r2 = self.r2(y_test, y_pred, y_mean)
+            # r2 = self.r2(y_test, y_pred, y_mean)
             print(f'\nTest MSE: {result}')
-            print(f'Test R2:  {r2}')
+            # print(f'Test R2:  {r2}')
             params_list = {'fit_intercept': [True,False], 'n_jobs': [1,5,10,15,None], 'positive': [True,False]}
             performance = self.grid_searchcv(_model, 
                                              X_train, 
@@ -240,7 +241,7 @@ class ModelTraining:
                 'Model': 'Linear Regression',
                 'Metric': "MSE",
                 "MSE Score": result,
-                'R2 Score': r2,
+                # 'R2 Score': r2,
                 "GS CV Score": performance['best_score'][0],
                 'Best Params': str(performance['best_params'][0]),
                 'Best Estimator': str(performance['model_best_estimator'][0])
@@ -277,9 +278,9 @@ class ModelTraining:
             _model, y_pred = self.DT(X_train, y_train, X_test, y_test, False)
             result = self.results(y_test, y_pred, False)
             y_mean = y_test.mean()
-            r2 = self.r2(y_test, y_pred, y_mean)
+            # r2 = self.r2(y_test, y_pred, y_mean)
             print(f'\nTest MSE: {result}')
-            print(f'Test R2:  {r2}')
+            # print(f'Test R2:  {r2}')
             params_list =  {"max_depth": [3,4,5,6,7,8,9,10],
                             "min_samples_leaf": [0.02, 0.04, 0.06],
                             "max_features": [0.4, 0.6, 0.8, 1.0]}
@@ -289,7 +290,7 @@ class ModelTraining:
                     'Model': 'Decision Tree Regression',
                     'Metric': "MSE",
                     "MSE Score": result,
-                    'R2 Score': r2,
+                    # 'R2 Score': r2,
                     "GS CV Score": performance['best_score'][0],
                     'Best Params': str(performance['best_params'][0]),
                 'Best Estimator': str(performance['model_best_estimator'][0])
@@ -322,9 +323,9 @@ class ModelTraining:
             _model, y_pred = self.MLP(X_train, y_train, X_test, y_test, False)
             result = self.results(y_test, y_pred, False)
             y_mean = y_test.mean()
-            r2 = self.r2(y_test, y_pred, y_mean)
+            # r2 = self.r2(y_test, y_pred, y_mean)
             print(f'\nTest MSE: {result}')
-            print(f'Test R2:  {r2}')
+            # print(f'Test R2:  {r2}')
             params_list =  {'hidden_layer_sizes': [(10,),(20,),(50,),(100,)]}
             performance = self.grid_searchcv(_model, X_train, y_train, params_list)
             print("\n-------------------------------------------------------")
@@ -332,7 +333,7 @@ class ModelTraining:
                     'Model': 'MLP Regression',
                     'Metric': "MSE",
                     "MSE Score": result,
-                    'R2 Score': r2,
+                    # 'R2 Score': r2,
                     "GS CV Score": performance['best_score'][0],
                     'Best Params': str(performance['best_params'][0]),
                 'Best Estimator': str(performance['model_best_estimator'][0])
@@ -365,9 +366,9 @@ class ModelTraining:
             _model, y_pred = self.GBM(X_train, y_train, X_test, y_test, False)
             result = self.results(y_test, y_pred, False)
             y_mean = y_test.mean()
-            r2 = self.r2(y_test, y_pred, y_mean)
+            # r2 = self.r2(y_test, y_pred, y_mean)
             print(f'\nTest MSE: {result}')
-            print(f'Test R2:  {r2}')
+            # print(f'Test R2:  {r2}')
             params_list =  {"learning_rate": [0.01, 0.025, 0.05, 0.075, 0.1, 0.15, 0.2],
                               "max_depth": [2,3,4,5],
                               "n_estimators": [20]}
@@ -377,7 +378,7 @@ class ModelTraining:
                     'Model': 'GBM Regression',
                     'Metric': "MSE",
                     "MSE Score": result,
-                    'R2 Score': r2,
+                    # 'R2 Score': r2,
                     "GS CV Score": performance['best_score'][0],
                     'Best Params': str(performance['best_params'][0]),
                 'Best Estimator': str(performance['model_best_estimator'][0])
@@ -409,9 +410,9 @@ class ModelTraining:
             _model, y_pred = self.RF(X_train, y_train, X_test, y_test, False)
             result = self.results(y_test, y_pred, False)
             y_mean = y_test.mean()
-            r2 = self.r2(y_test, y_pred, y_mean)
+            # r2 = self.r2(y_test, y_pred, y_mean)
             print(f'\nTest MSE: {result}')
-            print(f'Test R2:  {r2}')
+            # print(f'Test R2:  {r2}')
             params_list =  {'max_depth': [1,2,3,4],
                             'n_estimators': [1,5,10]}
             performance = self.grid_searchcv(_model, X_train, y_train, params_list)
@@ -420,7 +421,7 @@ class ModelTraining:
                     'Model': 'RF Regression',
                     'Metric': "MSE",
                     "MSE Score": result,
-                    'R2 Score': r2,
+                    # 'R2 Score': r2,
                     "GS CV Score": performance['best_score'][0],
                     'Best Params': str(performance['best_params'][0]),
                 'Best Estimator': str(performance['model_best_estimator'][0])
@@ -442,7 +443,7 @@ class ModelTraining:
                     'Model': 'SVM Classifier',
                     'Metric': "ROC",
                     "ROC Score": result,
-                    # 'R2 Score': r2,
+                    'R2 Score': r2,
                     "GS CV Score": performance['best_score'][0],
                     'Best Params': performance['best_params'][0]
                 }
@@ -452,9 +453,9 @@ class ModelTraining:
             _model, y_pred = self.SVM(X_train, y_train, X_test, y_test, False)
             result = self.results(y_test, y_pred, False)
             y_mean = y_test.mean()
-            r2 = self.r2(y_test, y_pred, y_mean)
+            # r2 = self.r2(y_test, y_pred, y_mean)
             print(f'\nTest MSE: {result}')
-            print(f'Test R2:  {r2}')
+            # print(f'Test R2:  {r2}')
             params_list =  {'C': [.1,1,10,100]}
             performance = self.grid_searchcv(_model, X_train, y_train, params_list)
             print("\n-------------------------------------------------------")
@@ -462,12 +463,24 @@ class ModelTraining:
                     'Model': 'SVM Regression',
                     'Metric': "MSE",
                     "MSE Score": result,
-                    'R2 Score': r2,
+                    # 'R2 Score': r2,
                     "GS CV Score": performance['best_score'][0],
                     'Best Params': str(performance['best_params'][0]),
                     'Best Estimator': str(performance['model_best_estimator'][0])
                 }
          
+        elif model_choice == 'GPR' and binary == True:
+            print("GP in Classification not supported as of now, Please check again in later updates")
+        elif model_choice == 'GPR' and binary == False:
+            print("\nRunning 'Gaussian Process Regression' Model | Metric: 'MSE' ...")
+            print("\nTraining...")  
+
+
+
+
+
+
+
     def save_models(self, enter_var, model, save_path):
         enter_var = pd.DataFrame(enter_var, index=[0])
         enter_var.to_csv(save_path+'%s_results.csv' % model, index=False)
