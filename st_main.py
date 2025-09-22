@@ -2,6 +2,7 @@ import time
 import streamlit as st
 import pandas as pd
 from main import ModelTraining
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 #run this (python3 -m streamlit run st_main.py) or (streamlit run st_main.py)
